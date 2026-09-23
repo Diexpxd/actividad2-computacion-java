@@ -2,11 +2,15 @@ import java.util.Scanner;
 
 public class Main {
 
+    // Si los datos vienen de un archivo (java Main < datos.txt) no se ven en pantalla,
+    // así que en ese caso se imprimen para que quede claro qué se leyó
+    private static final boolean ENTRADA_DE_ARCHIVO = System.console() == null;
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Nombre del estudiante: ");
-        String nombre = scanner.nextLine();
+        String nombre = leerLinea(scanner);
 
         double[] calificaciones = new double[5];
         for (int i = 0; i < calificaciones.length; i++) {
@@ -29,7 +33,7 @@ public class Main {
     private static double leerCalificacion(Scanner scanner, int numero) {
         while (true) {
             System.out.print("Calificación de la materia " + numero + ": ");
-            String entrada = scanner.nextLine().trim();
+            String entrada = leerLinea(scanner).trim();
             try {
                 double valor = Double.parseDouble(entrada);
                 if (valor >= 0 && valor <= 100) {
@@ -40,5 +44,13 @@ public class Main {
                 System.out.println("Eso no es un número, intenta otra vez.");
             }
         }
+    }
+
+    private static String leerLinea(Scanner scanner) {
+        String linea = scanner.nextLine();
+        if (ENTRADA_DE_ARCHIVO) {
+            System.out.println(linea);
+        }
+        return linea;
     }
 }

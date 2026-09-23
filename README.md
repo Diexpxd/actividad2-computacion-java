@@ -18,3 +18,9 @@ calcula el promedio y le asigna una calificación en letra:
 javac -encoding UTF-8 -d out src/*.java
 java -cp out Main
 ```
+
+También se le pueden pasar los datos desde un archivo (en `datos/` hay tres ejemplos):
+
+```
+java -cp out Main < datos/alumno_B.txt
+```
