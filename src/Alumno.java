@@ -1,21 +1,11 @@
-/**
- * Actividad 2 - Computación en Java
- * Clase que guarda el nombre de un alumno y sus cinco calificaciones,
- * y calcula su promedio y su calificación final en letra.
- */
 public class Alumno {
 
-    // Atributos
     private String nombre;
     private double[] calificaciones = new double[5];
 
     public Alumno(String nombre, double[] calificaciones) {
-        if (calificaciones.length != 5) {
-            throw new IllegalArgumentException("Se necesitan exactamente 5 calificaciones");
-        }
         this.nombre = nombre;
-        // Se copian los valores al arreglo del alumno
-        for (int i = 0; i < calificaciones.length; i++) {
+        for (int i = 0; i < 5; i++) {
             this.calificaciones[i] = calificaciones[i];
         }
     }
@@ -28,16 +18,16 @@ public class Alumno {
         return calificaciones;
     }
 
-    // Método 1: recibe el arreglo de calificaciones y regresa el promedio
+    // recibe el arreglo y regresa el promedio
     public double calcularPromedio(double[] calificaciones) {
         double suma = 0;
-        for (double calificacion : calificaciones) {
-            suma += calificacion;
+        for (int i = 0; i < calificaciones.length; i++) {
+            suma = suma + calificaciones[i];
         }
         return suma / calificaciones.length;
     }
 
-    // Método 2: recibe el promedio y regresa la calificación en letra
+    // recibe el promedio y regresa la letra
     public char obtenerCalificacion(double promedio) {
         if (promedio <= 50) {
             return 'F';
@@ -54,7 +44,6 @@ public class Alumno {
         }
     }
 
-    // Método 3: imprime los resultados, no regresa nada
     public void imprimirResultados(String nombre, double promedio, char calificacion) {
         System.out.println("Nombre del estudiante: " + nombre);
         for (int i = 0; i < calificaciones.length; i++) {
